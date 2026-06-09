@@ -29,10 +29,11 @@ body {
 }
 .imagem-centro{
     height: 800px;
-
      display: flex;
     justify-content: center;
     align-items: center;
+    
+    
     
 
 }
@@ -81,6 +82,26 @@ body {
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border-left: 6px solid #0066cc;
+}
+.botao-video {
+    display: inline-block;
+    background-color: #1400cc;
+    color: rgb(242, 242, 248);
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: block;
+        margin: 8px auto;
+        width: 40%;
+    font-weight: bold;
+    transition: 0.3s;
+    display: block;
+       
+}
+
+.botao-video:hover {
+    background-color: #041785;
+    transform: scale(1.05);
 }
 
 .apresentacao h2,
