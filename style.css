@@ -1,157 +1,563 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E PALETA DE CORES
+
+   Variáveis globais (design tokens) usadas em todo o site:
+   cores, sombras, raio de borda e transição padrão.
+   ========================================================================== */
+:root {
+    --bg-principal: #f4f7f6;
+    --bg-cards: #ffffff;
+    --cor-primaria: #0f172a;   /* Azul Escuro / Slate */
+    --cor-secundaria: #0284c7; /* Azul Tecnológico / Sky Blue */
+    --cor-acento: #38bdf8;     /* Azul Claro Brilhante */
+    --texto-escuro: #334155;
+    --texto-claro: #f8fafc;
+    --sombra-suave: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --sombra-hover: 0 10px 15px -3px rgba(2, 132, 199, 0.2);
+    --borda-raio: 12px;
+    --transicao: all 0.3s ease;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 body {
-    background-color: #f2f4f8;
+    background-color: var(--bg-principal);
+    color: var(--texto-escuro);
     line-height: 1.6;
+    padding: 20px;
 }
 
-/* CABEÇALHO */
-.cabecalho {
-    background: linear-gradient(rgba(0,0,0,0.5),
-    rgba(0,0,0,0.5)),
-    url("img/cabo de rede.jpg");
+/* ==========================================================================
+   2. UTILITÁRIOS DE ACESSIBILIDADE
 
-    background-size: cover;
-    background-position: center;
+   Classes de apoio que não alteram o layout visual, mas
+   melhoram a navegação por teclado e leitor de tela.
+   ========================================================================== */
 
-    height: 350px;
+/* Esconde visualmente um elemento mas mantém disponível para leitores de tela */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
 
+/* Link "Pular para o conteúdo": some fora da tela e aparece ao receber foco */
+.skip-link {
+    position: absolute;
+    top: -50px;
+    left: 10px;
+    background: var(--cor-primaria);
+    color: var(--texto-claro);
+    padding: 10px 16px;
+    border-radius: 6px;
+    z-index: 100;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 10px;
+}
+
+/* Contorno de foco visível e consistente para navegação por teclado */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--cor-acento);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   3. ESTRUTURA PRINCIPAL DO GRID LAYOUT (DESKTOP)
+
+   Define as áreas nomeadas do grid principal da página.
+   ========================================================================== */
+.grid-container {
+    display: grid;
+    max-width: 1300px;
+    margin: 0 auto;
+    gap: 20px;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+        "header menu"
+        "hero hero"
+        "main image"
+        "main extra"
+        "banner banner";
+}
+
+/* ==========================================================================
+   4. ESTILIZAÇÃO DOS COMPONENTES INDIVIDUAIS
+   ========================================================================== */
+
+/* --- HEADER: área do logotipo e título principal --- */
+.header {
+    grid-area: header;
+    background-color: var(--cor-primaria);
+    color: var(--texto-claro);
+    padding: 20px;
+    border-radius: var(--borda-raio);
     display: flex;
-    justify-content: center;
     align-items: center;
-
-    color: white;
+    box-shadow: var(--sombra-suave);
 }
-.imagem-centro{
-    height: 800px;
-     display: flex;
-    justify-content: center;
+
+.logo {
+    display: flex;
     align-items: center;
-    
-    
-    
-
+    gap: 12px;
 }
 
-.cabecalho h1 {
-    font-size: 32px;
-    text-shadow: 2px 2px 5px black;
+.logo-icon {
+    font-size: 1.8rem;
 }
 
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
 
-/* MENU */
+/* --- MENU: navegação principal em formato de barra horizontal --- */
 .menu {
-    background-color: #00264d;
-    text-align: center;
-    padding: 12px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    grid-area: menu;
+    background-color: var(--bg-cards);
+    padding: 10px;
+    border-radius: var(--borda-raio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--sombra-suave);
+    border: 1px solid #e2e8f0;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .menu a {
-    color: white;
     text-decoration: none;
-    background-color: #0066cc;
-    padding: 10px 16px;
-    margin: 5px;
+    color: var(--texto-escuro);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 12px;
     border-radius: 6px;
-    display: inline-block;
-    transition: 0.3s;
-    font-weight: bold;
+    transition: var(--transicao);
 }
 
-.menu a:hover {
-    background-color: #0099ff;
-    transform: scale(1.05);
+.menu a:hover,
+.menu a.active {
+    background-color: var(--cor-secundaria);
+    color: var(--texto-claro);
 }
 
-/* CONTEÚDO (CARDS PROFISSIONAIS) */
-.apresentacao,
-.conteudo {
-    width: 90%;
-    max-width: 900px;
-    margin: 20px auto;
-    background-color: white;
-    padding: 50px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-left: 6px solid #0066cc;
+/* --- HERO: chamada de destaque na abertura da página --- */
+.hero {
+    grid-area: hero;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    color: var(--texto-claro);
+    padding: 60px 40px;
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    align-items: center;
 }
-.botao-video {
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.btn-hero {
     display: inline-block;
-    background-color: #1400cc;
-    color: rgb(242, 242, 248);
-    padding: 12px 20px;
-    border-radius: 8px;
+    background-color: var(--cor-secundaria);
+    color: var(--texto-claro);
     text-decoration: none;
-    display: block;
-        margin: 8px auto;
-        width: 40%;
-    font-weight: bold;
-    transition: 0.3s;
-    display: block;
-       
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+    transition: var(--transicao);
 }
 
-.botao-video:hover {
-    background-color: #041785;
-    transform: scale(1.05);
+.btn-hero:hover {
+    background-color: var(--cor-acento);
+    color: var(--cor-primaria);
+    transform: translateY(-2px);
 }
 
-.apresentacao h2,
-.conteudo h2 {
-    color: #003366;
+/* --- MAIN: conteúdo textual + grade de cartões de categorias --- */
+.main {
+    grid-area: main;
+    background-color: var(--bg-cards);
+    padding: 35px;
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra-suave);
+}
+
+.intro-section h2 {
+    color: var(--cor-primaria);
     margin-bottom: 15px;
 }
 
-.apresentacao p,
-.conteudo p {
-    margin-bottom: 50px;
-    font-size: 20px;
+.intro-section p {
+    margin-bottom: 20px;
 }
 
-/* BOTÃO VOLTAR */
-.voltar {
-    display: inline-block;
-    margin-top: 15px;
-    background-color: #0066cc;
-    color: white;
-    text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 6px;
-    transition: 0.3s;
-    font-weight: bold;
-}
-
-.voltar:hover {
-    background-color: #0099ff;
-    transform: scale(1.05);
-}
-
-/* RODAPÉ */
-.rodape {
-    background-color: #003366;
-    color: white;
-    text-align: center;
+.advantages {
+    background-color: #f8fafc;
     padding: 20px;
-    margin-top: 30px;
+    border-left: 4px solid var(--cor-secundaria);
+    border-radius: 0 var(--borda-raio) var(--borda-raio) 0;
+    margin: 25px 0;
 }
 
-/* RESPONSIVO */
-@media (max-width: 500px) {
-    .menu a {
-        display: block;
-        margin: 8px auto;
-        width: 80%;
+.advantages h3 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.advantages ul {
+    list-style-position: inside;
+    padding-left: 5px;
+}
+
+/* Grid interna de cartões (categorias de cabos) */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--borda-raio);
+    padding: 20px;
+    position: relative;
+    transition: var(--transicao);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+    border-color: var(--cor-secundaria);
+}
+
+.card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #cbd5e1;
+    color: var(--cor-primaria);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: var(--cor-primaria);
+}
+
+.card .speed {
+    color: var(--cor-secundaria);
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 8px 0;
+}
+
+.card .desc {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* Variação visual usada no cartão da categoria Cat8 (Data Center) */
+.card.data-center {
+    background: linear-gradient(to bottom right, #ffffff, #f8fafc);
+}
+
+/* --- IMAGE: carrossel de imagens ilustrativas --- */
+.image {
+    grid-area: image;
+    border-radius: var(--borda-raio);
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
+    min-height: 350px;
+    position: relative;
+}
+
+.slider {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider figure {
+    display: flex;
+    width: 200%;
+    height: 100%;
+    margin: 0;
+    animation: slide 12s infinite;
+}
+
+/* Pausa a animação quando o usuário passa o mouse ou navega por teclado,
+   dando controle sobre o conteúdo em movimento (requisito de acessibilidade) */
+.slider:hover figure,
+.slider:focus-within figure {
+    animation-play-state: paused;
+}
+
+.slider figure img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(15, 23, 42, 0.85));
+    color: white;
+    padding: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* --- EXTRA: bloco lateral de curiosidades --- */
+.extra {
+    grid-area: extra;
+    background-color: var(--bg-cards);
+    padding: 25px;
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra-suave);
+}
+
+.extra h3 {
+    color: var(--cor-primaria);
+    margin-bottom: 15px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+}
+
+.curiosities-list {
+    list-style: none;
+}
+
+.curiosities-list li {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    position: relative;
+    padding-left: 15px;
+}
+
+.curiosities-list li::before {
+    content: "•";
+    color: var(--cor-secundaria);
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* --- BANNER: seção comparativa de cenários de uso --- */
+.banner {
+    grid-area: banner;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: var(--texto-claro);
+    padding: 40px;
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra-suave);
+}
+
+.banner h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.banner > .banner-content > p {
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.banner-segments {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.segment {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.9rem;
+}
+
+.segment strong {
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 5px;
+    color: var(--cor-acento);
+}
+
+/* --- FOOTER: rodapé, ocupa a largura total do grid --- */
+.footer {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 25px;
+    color: #64748b;
+    font-size: 0.9rem;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 10px;
+}
+
+.footer a {
+    color: var(--cor-secundaria);
+}
+
+/* ==========================================================================
+   5. ANIMAÇÕES
+   ========================================================================== */
+
+/* Animação do carrossel: desliza entre as 2 imagens do slider */
+@keyframes slide {
+    0%, 20% {
+        transform: translateX(0);
+    }
+    50%, 70% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Respeita a preferência do sistema por movimento reduzido:
+   usuários sensíveis a animação deixam de ver o carrossel em movimento */
+@media (prefers-reduced-motion: reduce) {
+    .slider figure {
+        animation: none;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ==========================================================================
+   6. RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+
+/* TABLET: reorganiza o grid em 2 colunas, imagem e extras lado a lado */
+@media (max-width: 992px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "header menu"
+            "hero hero"
+            "main main"
+            "image extra"
+            "banner banner";
     }
 
-    .cabecalho h1 {
-        font-size: 24px;
+    .hero h2 {
+        font-size: 2.1rem;
+    }
+}
+
+/* MOBILE: empilha todas as áreas em uma única coluna */
+@media (max-width: 680px) {
+    body {
+        padding: 10px;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "menu"
+            "hero"
+            "main"
+            "image"
+            "extra"
+            "banner";
+        gap: 15px;
+    }
+
+    .header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .menu a {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .hero {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .main {
+        padding: 20px;
+    }
+
+    .banner {
+        padding: 25px 15px;
     }
 }

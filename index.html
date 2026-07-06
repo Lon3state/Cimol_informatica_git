@@ -2,64 +2,242 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Guia dos Cabos de Rede</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guia educacional sobre cabos de rede Ethernet: categorias, velocidades e aplicações para escolher a melhor opção de infraestrutura.">
+    <title>Guia dos Cabos de Rede - Educacional</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="cabecalho">
-    <h1>Guia dos Cabos de Rede</h1>
-</div>
+    <!--
+    ====================================================
+    LINK DE ACESSIBILIDADE (SKIP LINK)
 
-<div class="menu">
-    <a href="index.html">Início</a>
-    <a href="cat5.html">CAT5</a>
-    <a href="cat5e.html">CAT5e</a>
-    <a href="cat6.html">CAT6</a>
-    <a href="cat6a.html">CAT6A</a>
-    <a href="cat7.html">CAT7</a>
-    <a href="cat8.html">CAT8</a>
-</div>
-<a class="botao-video" href="https://www.youtube.com/watch?v=OT_5EjDfD6M" target="_blank">
-    
-Video de como fazer RJ45
-</a>
+    Permite que usuários de teclado/leitor de tela
+    pulem direto para o conteúdo principal, sem
+    precisar passar por todo o menu.
+    ====================================================
+    -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
-<div class="apresentacao">
-    <h2>Bem-vindo ao Guia de Cabos de Rede</h2>
+    <div class="grid-container">
 
-    <p>
-        Este site apresenta as principais categorias de cabos de rede utilizados em residências, empresas e data centers.
-    </p>
+        <!--
+        ====================================================
+        CABEÇALHO (HEADER)
 
-    <p>
-        Você pode navegar pelo menu acima para conhecer cada tipo de cabo, suas velocidades e aplicações.
-    </p>
+        Exibe o logotipo e o título principal do site.
+        ====================================================
+        -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon" aria-hidden="true">🌐</span>
+                <h1>Guia dos Cabos de Rede</h1>
+            </div>
+        </header>
 
-    <p>
-        Quanto maior a categoria, maior o desempenho e a qualidade da conexão.
-    </p>
-</div>
-   <div class="imagem-centro">
-        <img src="img/cabo blindado.webp" alt="Cabo Blindado">
-        
+        <!--
+        ====================================================
+        MENU PRINCIPAL (NAV)
+
+        Responsável pela navegação entre todas as seções
+        da página. Cada link aponta para um ID existente
+        no documento.
+        ====================================================
+        -->
+        <nav class="menu" aria-label="Navegação principal">
+            <ul>
+                <li><a href="#inicio" class="active">Início</a></li>
+                <li><a href="#tipos">Tipos de Cabos</a></li>
+                <li><a href="#categorias">Categorias</a></li>
+                <li><a href="#comparativo">Comparativo</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+
+        <!--
+        ====================================================
+        HERO / BANNER DE ABERTURA
+
+        Chamada inicial que resume o propósito da página
+        e convida o usuário a explorar o conteúdo.
+        ====================================================
+        -->
+        <section class="hero" id="inicio">
+            <div class="hero-content">
+                <h2>Entenda os Cabos de Rede Ethernet</h2>
+                <p>Conheça as principais categorias de cabos de rede, suas velocidades, aplicações e diferenças para escolher a melhor opção para sua infraestrutura.</p>
+                <a href="#main-content" class="btn-hero">Explorar Conteúdo</a>
+            </div>
+        </section>
+
+        <!--
+        ====================================================
+        CONTEÚDO PRINCIPAL (MAIN)
+
+        Contém a introdução sobre cabos de rede (tipos
+        blindados x não blindados) e a grade de categorias
+        disponíveis (Cat5e a Cat8).
+        ====================================================
+        -->
+        <main class="main" id="main-content">
+
+            <!-- Introdução: explica o que é um cabo de rede e os tipos existentes -->
+            <section class="intro-section" id="tipos">
+                <h2>Conectividade Sem Gargalos</h2>
+                <p>Um <strong>cabo de rede</strong> (ou cabo de par trançado) é o meio físico fundamental para a transmissão de dados em redes locais (LAN). Ele funciona enviando impulsos elétricos ou sinais de alta frequência através de fios de cobre trançados em pares, uma técnica essencial para anular interferências eletromagnéticas externas.</p>
+
+                <p>Na hora de planejar uma rede, a escolha entre cabos <strong>blindados (STP/FTP)</strong> e <strong>não blindados (UTP)</strong> é crucial: cabos blindados possuem uma malha protetora ideal para ambientes industriais ou calhas com fiação elétrica, enquanto os não blindados são perfeitos, maleáveis e econômicos para uso residencial e escritórios comerciais.</p>
+
+                <div class="advantages">
+                    <h3>Vantagens da Conexão Cabeada</h3>
+                    <ul>
+                        <li><strong>Estabilidade máxima:</strong> Sem oscilações causadas por barreiras físicas.</li>
+                        <li><strong>Latência reduzida:</strong> Crucial para aplicações em tempo real, jogos e chamadas de vídeo.</li>
+                        <li><strong>Segurança:</strong> Dados trafegam confinados no meio físico, dificultando interceptações.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Grade de categorias: cartões clicáveis para cada categoria de cabo -->
+            <section class="categories-grid" id="categorias" aria-labelledby="categorias-titulo">
+                <h2 id="categorias-titulo" class="visually-hidden">Categorias de Cabos</h2>
+
+                <a href="cat5.html" class="card">
+                    <span class="card-badge">Cat5e</span>
+                    <h3>Categoria 5</h3>
+                    <p class="speed">Até 1 Gbps</p>
+                    <p class="desc">A escolha padrão e econômica para uso residencial tradicional.</p>
+                </a>
+
+                <a href="cat5e.html" class="card">
+                    <span class="card-badge">Cat5e</span>
+                    <h3>Categoria 5e</h3>
+                    <p class="speed">Até 1 Gbps</p>
+                    <p class="desc">A escolha padrão e econômica para uso residencial tradicional.</p>
+                </a>
+
+                <a href="cat6.html" class="card">
+                    <span class="card-badge">Cat6</span>
+                    <h3>Categoria 6</h3>
+                    <p class="speed">Até 10 Gbps</p>
+                    <p class="desc">Melhor desempenho, ideal para streaming 4K e tráfego interno intenso.</p>
+                </a>
+
+                <a href="cat6a.html" class="card">
+                    <span class="card-badge">Cat6a</span>
+                    <h3>Categoria 6a</h3>
+                    <p class="speed">Maior Largura de Banda</p>
+                    <p class="desc">Frequências de até 500 MHz, perfeito para ambientes corporativos robustos.</p>
+                </a>
+
+                <a href="cat7.html" class="card">
+                    <span class="card-badge">Cat7</span>
+                    <h3>Categoria 7</h3>
+                    <p class="speed">Blindagem Avançada</p>
+                    <p class="desc">Foco na eliminação total de ruídos e menor interferência externa.</p>
+                </a>
+
+                <a href="cat8.html" class="card data-center">
+                    <span class="card-badge">Cat8</span>
+                    <h3>Categoria 8</h3>
+                    <p class="speed">Até 40 Gbps</p>
+                    <p class="desc">Velocidade extrema otimizada especificamente para Data Centers.</p>
+                </a>
+            </section>
+        </main>
+
+        <!--
+        ====================================================
+        SLIDER DE IMAGENS (ASIDE)
+
+        Carrossel automático com fotos ilustrativas de
+        cabos e infraestrutura de rede.
+        A animação é pausada em hover/foco e respeita a
+        preferência de "movimento reduzido" do usuário.
+        ====================================================
+        -->
+        <aside class="image">
+            <div class="slider">
+                <figure>
+                    <img src="img/cabo blindado.webp" alt="Cabo de rede blindado com conector RJ45 em close-up">
+                    <img src="img/cabo de rede.jpg" alt="Feixe de cabos de rede organizados em uma infraestrutura de rack">
+                    <figcaption class="image-overlay">Infraestrutura RJ45 &amp; Ethernet</figcaption>
+                </figure>
+            </div>
+        </aside>
+
+        <!--
+        ====================================================
+        CURIOSIDADES (ASIDE)
+
+        Bloco lateral com informações complementares e
+        rápidas sobre cabos de rede.
+        ====================================================
+        -->
+        <aside class="extra">
+            <div class="extra-box">
+                <h3><span aria-hidden="true">💡</span> Curiosidades</h3>
+                <ul class="curiosities-list">
+                    <li>
+                        <strong>Padrão Universal:</strong> O conector padrão utilizado mundialmente nessas estruturas é o clássico <strong>RJ45</strong>.
+                    </li>
+                    <li>
+                        <strong>Limite Físico:</strong> O comprimento máximo recomendado para manter a integridade do sinal sem repetidores é de <strong>100 metros</strong>.
+                    </li>
+                    <li>
+                        <strong>Proteção Eletromagnética:</strong> Os cabos blindados ajudam drasticamente a reduzir as interferências de redes elétricas paralelas.
+                    </li>
+                    <li>
+                        <strong>Próximo Nível:</strong> A categoria Cat8 é estritamente voltada para ambientes de altíssima performance e curtas distâncias.
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!--
+        ====================================================
+        BANNER COMPARATIVO
+
+        Ajuda o usuário a decidir qual categoria de cabo
+        combina com cada cenário de uso.
+        ====================================================
+        -->
+        <section class="banner" id="comparativo">
+            <div class="banner-content">
+                <h2>Qual cabo devo escolher?</h2>
+                <p>A escolha depende diretamente do seu cenário arquitetônico e demanda de tráfego de dados:</p>
+                <div class="banner-segments">
+                    <div class="segment">
+                        <strong>Residências:</strong> Cat5e ou Cat6 são mais do que suficientes para internet comum.
+                    </div>
+                    <div class="segment">
+                        <strong>Escritórios:</strong> Cat6 garante estabilidade para transferência interna de arquivos pesados.
+                    </div>
+                    <div class="segment">
+                        <strong>Empresas:</strong> Cat6a protege o investimento a longo prazo suportando maiores bandas.
+                    </div>
+                    <div class="segment">
+                        <strong>Data Centers:</strong> Cat8 entrega a latência ultra-baixa e taxas de transferência massivas necessárias.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--
+        ====================================================
+        RODAPÉ (FOOTER)
+
+        Créditos do site e ponto de contato (id="contato",
+        referenciado pelo menu principal).
+        ====================================================
+        -->
+        <footer class="footer" id="contato">
+            <p>&copy; 2026 - Guia Educacional de Redes. Todos os direitos reservados.</p>
+            <p>Contato: <a href="mailto:contato@guiaderedes.exemplo.com">contato@guiaderedes.exemplo.com</a></p>
+        </footer>
+
     </div>
-
-<div class="conteudo">
-    <h2>Resumo das Categorias</h2>
-
-    <p>CAT5 → antigo, até 100 Mbps</p>
-    <p>CAT5e → até 1 Gbps</p>
-    <p>CAT6 → até 10 Gbps</p>
-    <p>CAT6A → 10 Gbps estável</p>
-    <p>CAT7 → blindagem avançada</p>
-    <p>CAT8 → até 40 Gbps (data centers)</p>
-</div>
-
-<div class="rodape">
-    <p>Marcelo - Trabalho de HTML e CSS</p>
-</div>
 
 </body>
 </html>
